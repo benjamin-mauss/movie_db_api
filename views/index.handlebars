@@ -1,0 +1,138 @@
+<h1 id="id_title">Most popular movies</h1>
+<!-- carousel -->
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="5" aria-label="Slide 6"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active" >
+      <img  class="d-block w-100 id_crc" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100 id_crc" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img  class="d-block w-100 id_crc" alt="...">
+    </div>
+
+    <div class="carousel-item">
+      <img  class="d-block w-100 id_crc" alt="...">
+    </div>
+
+    <div class="carousel-item">
+      <img  class="d-block w-100 id_crc" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img  class="d-block w-100 id_crc" alt="...">
+    </div>
+
+    
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+
+</div>
+<!-- Cards -->
+  <div class="row_card">
+    <div class="card" style="width: 18rem; position: inherit">
+      <img class="card-img-top id_cards">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        
+      </div>
+    </div>
+
+    <div class="card" style="width: 18rem; position: inherit">
+      <img class="card-img-top id_cards">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        
+      </div>
+    </div>
+
+    <div class="card" style="width: 18rem; position: inherit">
+      <img class="card-img-top id_cards">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        
+      </div>
+    </div>
+
+    <div class="card" style="width: 18rem; position: inherit">
+      <img class="card-img-top id_cards">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        
+      </div>
+    </div>
+  </div>
+
+
+<style>
+  #id_title{
+    text-align: center;
+    font-weight: bold;
+  }
+  .row_card {
+    display: table;
+    width: 100%; /*Optional*/
+    table-layout: fixed; /*Optional*/
+    border-spacing: 10px; /*Optional*/
+  }
+  .id_cards:hover{
+    width: 330px;
+    margin-left: -10px;
+    position: relative;
+    
+  }
+  img{
+    border-radius: 3%;
+  }
+  .card {
+      display: table-cell;
+  }
+</style>
+<script>
+      let imgs = document.getElementsByClassName("id_crc")
+
+      // request to get the most popular images
+
+      $.ajax({
+          url: "/get_most_populars_movies"
+      }).done((response)=>{
+        console.log(response)
+        // setting up carousel
+        for(let c =0;c < imgs.length; c++){
+          imgs[c].src = "https://image.tmdb.org/t/p/w1280" + response.results[c].backdrop_path
+          // imgs[c].onclick = // do some action
+        }
+        
+        // setting up carousel
+        let cards = document.getElementsByClassName("id_cards")
+
+        for(let c =0;c < cards.length; c++){
+          cards[c].src = "https://image.tmdb.org/t/p/w500" + response.results[c].backdrop_path
+          $(".card-title")[c].textContent = response.results[c].title
+          $(".card-text")[c].textContent = response.results[c].overview
+          // imgs[c].onclick = // do some action
+        }
+
+      })
+
+      
+</script>
