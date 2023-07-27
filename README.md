@@ -4,7 +4,7 @@ Because I was running out of ideas, I didn't make something very interesting
 
 ## Setting up
 With node js, git and npm installed, run the commands:
-`git clone github.com/gato-louco-cv/movie_db_api`
+`git clone github.com/benjamin-mauss/movie_db_api`
 
 `cd movie_db_api`
 
